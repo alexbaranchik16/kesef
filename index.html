@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>כספית</title>
+<meta name="description" content="מעקב הכנסות, הוצאות ותקציב חודשי">
+<meta name="theme-color" content="#4f46e5">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="כספית">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="top">
+  <div class="brand"><img src="icons/icon-192.png" alt="" width="28" height="28"><span>כספית</span></div>
+</header>
+<main id="main"></main>
+
+<nav class="nav">
+  <button data-act="tab" data-tab="home"><span>🏠</span>בית</button>
+  <button data-act="tab" data-tab="tx"><span>📋</span>תנועות</button>
+  <button class="fab" data-act="add" aria-label="הוספת תנועה">+</button>
+  <button data-act="tab" data-tab="budget"><span>🎯</span>תקציב</button>
+  <button data-act="tab" data-tab="more"><span>⚙️</span>עוד</button>
+</nav>
+
+<div id="sheet" hidden><div class="sheet-panel" role="dialog" aria-modal="true"><div id="sheet-body"></div></div></div>
+<div id="toast" role="status" aria-live="polite"></div>
+
+<script src="parser.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

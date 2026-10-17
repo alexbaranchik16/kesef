@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>כספית — מדריך</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+  main { padding-bottom: 40px; }
+  h1 { font-size: 22px; margin: 6px 0 4px; }
+  h2 { font-size: 18px; margin: 26px 0 8px; }
+  h3 { font-size: 15px; margin: 16px 0 6px; }
+  ol, ul { padding-inline-start: 22px; margin: 6px 0; }
+  li { margin: 5px 0; }
+  code, .code { direction: ltr; unicode-bidi: embed; background: var(--track); border-radius: 6px; padding: 1px 6px; font-size: 13px; font-family: ui-monospace, Consolas, monospace; }
+  pre { direction: ltr; text-align: left; background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 10px; overflow-x: auto; font-size: 13px; }
+  .tip { background: var(--primary-soft); border-radius: 12px; padding: 10px 12px; margin: 10px 0; font-size: 14px; }
+  .toc a { display: block; padding: 4px 0; }
+</style>
+</head>
+<body>
+<header class="top"><div class="brand"><a href="./" aria-label="חזרה לאפליקציה">→</a><span>מדריך כספית</span></div></header>
+<main>
+<h1>📖 התקנה וחיבור</h1>
+<div class="card toc">
+  <a href="#host">1. העלאת האפליקציה לאינטרנט (פעם אחת, חינם)</a>
+  <a href="#install">2. התקנה בטלפון</a>
+  <a href="#auto">3. חיבור אוטומטי להודעות מכאל ואמקס</a>
+  <a href="#manual">4. דרכים נוספות למלא נתונים</a>
+  <a href="#backup">5. גיבוי ופרטיות</a>
+</div>
+
+<h2 id="host">1. העלאה לאינטרנט — GitHub Pages</h2>
+<p>כדי להתקין אפליקציה כזו בטלפון היא צריכה כתובת אינטרנט מאובטחת (https). GitHub Pages נותן את זה בחינם. רק הקוד עולה לשם — <b>הנתונים הכספיים שלך לא</b>, הם נשמרים רק בטלפון.</p>
+<ol>
+  <li>היכנס ל-<a href="https://github.com/signup" target="_blank" rel="noopener">github.com</a> ופתח חשבון (אם אין לך).</li>
+  <li>לחץ <b>+</b> למעלה ← <b>New repository</b>. שם: <code>kesef</code>, סמן <b>Public</b>, ולחץ <b>Create repository</b>.</li>
+  <li>בעמוד שנפתח לחץ על הקישור <b>uploading an existing file</b>.</li>
+  <li>גרור לחלון את <b>כל התוכן</b> של תיקיית האפליקציה (הקבצים <code>index.html</code>, <code>app.js</code>… ואת התיקייה <code>icons</code>). את התיקייה <code>apps-script</code> לא חובה להעלות.</li>
+  <li>לחץ <b>Commit changes</b>.</li>
+  <li>עבור ל-<b>Settings</b> ← <b>Pages</b>. תחת <b>Branch</b> בחר <code>main</code> ו-<code>/ (root)</code> ← <b>Save</b>.</li>
+  <li>אחרי דקה-שתיים תופיע למעלה הכתובת: <code>https://USERNAME.github.io/kesef/</code> — זו האפליקציה שלך.</li>
+</ol>
+<div class="tip">עדכון גרסה בעתיד: מעלים שוב את הקבצים שהשתנו לאותו מקום (Add file ← Upload files). האפליקציה בטלפון תתעדכן בפתיחה הבאה.</div>
+
+<h2 id="install">2. התקנה בטלפון</h2>
+<h3>📱 אייפון</h3>
+<ol>
+  <li>פתח את הכתובת ב-<b>Safari</b> (דווקא Safari).</li>
+  <li>לחץ על כפתור השיתוף <b>⬆️</b> ← <b>הוסף למסך הבית</b> ← <b>הוסף</b>.</li>
+  <li>מעכשיו פותחים את "כספית" מהאייקון במסך הבית — היא נפתחת במסך מלא כמו אפליקציה רגילה, ועובדת גם בלי אינטרנט.</li>
+</ol>
+<h3>🤖 אנדרואיד</h3>
+<ol>
+  <li>פתח את הכתובת ב-<b>Chrome</b>.</li>
+  <li>תפריט <b>⋮</b> ← <b>התקנת אפליקציה</b> (או "הוספה למסך הבית").</li>
+</ol>
+<div class="tip">חשוב באייפון: השתמש תמיד באייקון שבמסך הבית ולא בכתובת בתוך Safari — לכל אחד מהם זיכרון נפרד.</div>
+
+<h2 id="auto">3. חיבור אוטומטי להודעות</h2>
+<p>הרעיון: כל SMS מכאל/אמקס נשלח אוטומטית מהטלפון ל<b>גיליון Google Sheets פרטי שלך</b>. האפליקציה מושכת משם את ההודעות בכל פתיחה, מזהה סכום, בית עסק ותאריך, ומסווגת לקטגוריה. כך זה עובד גם באייפון, שבו אפליקציות לא יכולות לקרוא SMS ישירות.</p>
+
+<h3>שלב א׳ — הגיליון (פעם אחת, מהמחשב)</h3>
+<ol>
+  <li>פתח <a href="https://sheets.new" target="_blank" rel="noopener">sheets.new</a> — נוצר גיליון חדש. תן לו שם, למשל "כספית הודעות".</li>
+  <li>בתפריט: <b>תוספים (Extensions)</b> ← <b>Apps Script</b>.</li>
+  <li>מחק את מה שכתוב בעורך והדבק את כל התוכן של הקובץ <code>apps-script/Code.gs</code>.</li>
+  <li>בשורה <code>const SECRET = '...'</code> החלף למפתח ארוך משלך (אותיות ומספרים באנגלית, לדוגמה <code>kx72hfQ93mzp41</code>). שמור (Ctrl+S).</li>
+  <li>לחץ <b>Deploy</b> ← <b>New deployment</b> ← בגלגל השיניים בחר <b>Web app</b>.
+    <ul><li>Execute as: <b>Me</b></li><li>Who has access: <b>Anyone</b></li></ul>
+    לחץ <b>Deploy</b>.</li>
+  <li>Google יבקש הרשאה: <b>Authorize access</b> ← בחר את החשבון ← אם מופיע "Google hasn't verified this app" לחץ <b>Advanced</b> ← <b>Go to … (unsafe)</b> ← <b>Allow</b>. (זה הסקריפט שלך, בחשבון שלך.)</li>
+  <li>העתק את ה-<b>Web app URL</b> (מסתיים ב-<code>/exec</code>).</li>
+  <li>באפליקציה: <b>עוד</b> ← <b>הודעות אוטומטיות</b> ← הדבק את הכתובת ואת המפתח ← <b>שמור ובדוק חיבור</b>. אמור להופיע "מחובר ✓".</li>
+</ol>
+<div class="tip">לא למחוק שורות מהגיליון — הוא משמש גם כיומן גיבוי של כל ההודעות.</div>
+
+<h3>שלב ב׳ — אייפון: אוטומציה בקיצורי דרך</h3>
+<ol>
+  <li>פתח את אפליקציית <b>קיצורי דרך (Shortcuts)</b> ← לשונית <b>אוטומציה</b> ← <b>+</b> (או "אוטומציה חדשה").</li>
+  <li>בחר <b>הודעה (Message)</b>.</li>
+  <li>ב-<b>ההודעה מכילה (Message Contains)</b> כתוב: <code>כרטיס</code> (מופיע בהודעות של כאל ושל אמקס). את "שולח" השאר ריק.</li>
+  <li>סמן <b>הפעל מיד (Run Immediately)</b> ← <b>הבא</b> ← <b>אוטומציה ריקה חדשה</b>.</li>
+  <li>הוסף פעולה: חפש <b>קבל תוכן של URL (Get Contents of URL)</b>.</li>
+  <li>במקום "URL" הדבק את כתובת ה-Web App.</li>
+  <li>לחץ על החץ <b>›</b> להרחבה:
+    <ul>
+      <li>שיטה (Method): <b>POST</b></li>
+      <li>גוף הבקשה (Request Body): <b>JSON</b></li>
+      <li>הוסף שדה ← <b>טקסט</b>: מפתח <code>key</code>, ערך — המפתח הסודי שלך.</li>
+      <li>הוסף שדה ← <b>טקסט</b>: מפתח <code>text</code>, ובערך לחץ על המשתנה <b>קלט קיצור הדרך (Shortcut Input)</b>. אם צריך, לחץ עליו ובחר <b>תוכן (Content)</b>.</li>
+    </ul>
+  </li>
+  <li>לחץ <b>סיום</b>. מעכשיו כל הודעת חיוב נשלחת לגיליון ברקע, בלי שתצטרך לעשות כלום.</li>
+</ol>
+<div class="tip">אם אתה רוצה לסנן יותר טוב, אפשר ליצור שתי אוטומציות: אחת עם "מכילה: כאל" ואחת עם "מכילה: אמריקן" או "אמקס" — לפי מה שכתוב בהודעות שאתה מקבל.</div>
+
+<h3>שלב ב׳ — אנדרואיד: MacroDroid (חינם)</h3>
+<ol>
+  <li>התקן <b>MacroDroid</b> מחנות Play ← <b>Add Macro</b>.</li>
+  <li><b>Trigger</b>: <b>SMS Received</b> ← Any number ← Content contains: <code>כרטיס</code>.
+    <br><small class="muted">אם ההתראות מגיעות מאפליקציית כאל/אמקס ולא כ-SMS: Trigger ← <b>Notification Received</b> ← בחר את האפליקציה.</small></li>
+  <li><b>Action</b>: <b>HTTP Request</b> ← Method <b>POST</b> ← URL: כתובת ה-Web App ← Content type: <code>application/json</code> ← Body:
+<pre>{"key":"המפתח-הסודי-שלך","text":"[sms_message]"}</pre>
+    (להתראות מאפליקציה השתמש ב-<code>[notification_text]</code> במקום <code>[sms_message]</code>.)</li>
+  <li>שמור את המאקרו ותן ל-MacroDroid את ההרשאות שהוא מבקש.</li>
+</ol>
+
+<h3>איך זה נראה ביום-יום</h3>
+<ul>
+  <li>קנית משהו ← הגיעה הודעה ← היא נשלחה לגיליון.</li>
+  <li>פתחת את כספית ← העסקה נכנסה לבד עם קטגוריה, ומופיעה עם תגית <b>חדש</b>.</li>
+  <li>אם הקטגוריה לא נכונה — לוחצים על העסקה ומתקנים. האפליקציה <b>לומדת</b> ובפעם הבאה בית העסק הזה יסווג נכון.</li>
+  <li>הודעה שלא זוהתה תופיע כהתראה בדף הבית לטיפול ידני.</li>
+</ul>
+
+<h2 id="manual">4. דרכים נוספות למלא נתונים</h2>
+<ul>
+  <li><b>הוספה מהירה</b> — כפתור <b>+</b>: סכום, בית עסק, קטגוריה. "שמור + עוד" לכמה ברצף.</li>
+  <li><b>הדבקת הודעות</b> — מעתיקים הודעה (או כמה) מה-SMS ומדביקים ב"עוד ← הדבקת הודעות".</li>
+  <li><b>שיתוף (אנדרואיד)</b> — בהודעה: לחיצה ארוכה ← שיתוף ← כספית.</li>
+  <li><b>אקסל מכאל / אמקס</b> — באתר החברה: פירוט חיובים ← ייצוא לאקסל, ואז "עוד ← ייבוא אקסל". מתאים גם להשלמת חודשים קודמים. כפילויות מול הודעות שכבר נכנסו מזוהות ולא מסומנות.</li>
+  <li><b>האקסלים הקודמים שלך</b> — אותו כפתור. צריך שורת כותרת עם עמודות: <code>תאריך</code>, <code>תיאור</code> (או בית עסק), <code>סכום</code>, ואם יש — <code>קטגוריה</code> (אם השם זהה לקטגוריה באפליקציה, הוא יישמר). סכום שלילי נקלט כהכנסה/זיכוי.</li>
+</ul>
+
+<h2 id="backup">5. גיבוי ופרטיות</h2>
+<ul>
+  <li>כל הנתונים נשמרים <b>רק בטלפון שלך</b>. אין שרת, אין חשבון.</li>
+  <li>פעם בחודש: <b>עוד ← גיבוי לקובץ</b>, ושמור ב-iCloud Drive / Google Drive. ככה אפשר לשחזר אם מחליפים טלפון.</li>
+  <li>ההודעות האוטומטיות נשמרות גם בגיליון הפרטי שלך ב-Google, שרק אתה (והסקריפט עם המפתח) יכול לגשת אליו.</li>
+  <li>"ייצוא לאקסל (CSV)" מוציא את כל התנועות לקובץ שנפתח באקסל.</li>
+</ul>
+<p class="center"><a href="./" class="primary-link">← חזרה לאפליקציה</a></p>
+</main>
+</body>
+</html>
